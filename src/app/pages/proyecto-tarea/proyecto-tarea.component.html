@@ -1,0 +1,42 @@
+<div class="loading-indicator" *ngIf="bool">
+  <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+</div>
+
+<div class="row animated fadeIn mt-5" align="center">
+  <div class="col-12">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Crear Proyecto/Tarea</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form ngNativeValidate #f="ngForm" (ngSubmit)="crearProyecto( f )">
+          <div class="input-group mb-2" align="center">
+          <mat-form-field>
+            <mat-label>Seleccionar tipo</mat-label>
+            <mat-select [(ngModel)]="tipo" name="tipo">
+              <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                {{ tipo.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fas fa-font"></i>
+              </div>
+            </div>
+            <input ngModel name="name" type="text" class="form-control" required placeholder="Introduce nombre de proyecto o tarea">
+          </div>
+          <div class=" container mt-3">
+            <div align="right">
+              <button type="submit" mat-fab class="btn btn-primary" color="primary">
+                <i class="fas fa-save"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

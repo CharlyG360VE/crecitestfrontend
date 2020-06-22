@@ -1,0 +1,49 @@
+<mat-toolbar *ngIf="adminBool" class="animated fadeIn" color="accent" >
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <i class="fas fa-ellipsis-v"></i>
+    </button>
+  </div>
+  <div>
+    <a class="mr-2 ml-2" mat-button>
+      <i class="fas fa-users-cog"></i>
+    </a>
+    <a mat-button routerLink="/dashboard"> 
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end" fxFlex="60" fxHide.xs>
+    <div fxLayout fxLayoutGap="15px" class="navigation-items">
+      <a class="ml-2" mat-button routerLink="/reporte"> Reportes </a>
+      <a class="ml-2" mat-button routerLink="/crear"> Nuevo proyecto/tarea </a>
+      <a class="ml-2" mat-button routerLink="/asignar"> Asignar proyecto/tarea </a>
+    </div>
+  </div>
+  <div class="container mr-4" align="right">
+    <a mat-button href="https://github.com/CharlyG360VE/crecitestfrontend" target="_blank">
+      <i class="fab fa-github-alt"></i>
+    </a>
+    <a mat-button (click)="logout()" class="pointer ml-3">
+      <i class="fas fa-sign-out-alt"></i>
+    </a>
+  </div>   
+</mat-toolbar>
+
+<mat-toolbar *ngIf="!adminBool" class="animated fadeIn" color="accent">
+  <div class="container">
+    <a mat-button routerLink="/reporte"> 
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+  <div class="container" align="center">
+    <h3>Creci Test <i class="fab fa-angular"></i></h3>
+  </div>
+  <div class="container mr-5" align="right">
+    <a class="ml-5">
+      <i class="fab fa-dev"></i>
+    </a>
+    <a (click)="logout()" class="pointer ml-5">
+      <i class="fas fa-sign-out-alt"></i>
+    </a>
+  </div>   
+</mat-toolbar>

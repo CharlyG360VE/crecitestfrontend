@@ -1,0 +1,121 @@
+<div class="loading-indicator" *ngIf="bool">
+  <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+</div>
+
+<div *ngIf="value !== 2 && !bool" class="row animated fadeIn card-columns mt-5" align="center">
+  <div class="col-12" align="center">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Desarrolladores registrados <i class="fas fa-code"></i></h3>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Seleccionar desarrollador</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let usuario of usuarios">
+              <tr>
+                <td> {{ usuario.name }} </td>
+                <td> {{ usuario.email }} </td>
+                <td>
+                  <button type="button" (click)="getdevId( usuario._id, usuario.name )" mat-fab class="btn btn-primary container">
+                   <i class="fas fa-check"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+     </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="value !== 2 && !bool" class="row animated fadeIn card-columns mt-5" align="center">
+<div class="col-12" align="center">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Tareas o proyectos creados</h3>
+      <mat-card-subtitle>Selecciona para vizualizar los proyectos o tareas</mat-card-subtitle>
+      <div class="table-responsive">
+        <mat-form-field>
+          <mat-label>Seleccionar tipo</mat-label>
+          <mat-select [(ngModel)]="tipo" name="tipo">
+            <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+              {{ tipo.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Nombre {{ tipo }}</th>
+              <th>Seleccionar {{ tipo }} </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="tipo == 'proyectos' && tipo">
+            <tr *ngFor="let proyecto of proyectos">
+              <td> {{ proyecto.name }} </td>
+              <td align="center">
+                <button (click)="getId(proyecto._id, proyecto.name)" type="button" mat-fab class="btn btn-primary container">
+                 <i class="fas fa-check"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="tipo !== 'proyectos' && tipo">
+            <tr *ngFor="let tarea of tareas">
+              <td> {{ tarea.name }} </td>
+              <td align="center">
+                <button (click)="getId(tarea._id, tarea.name)" type="button" mat-fab class="btn btn-primary container">
+                 <i class="fas fa-check"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+   </div>
+  </div>
+</div>
+</div>
+<div *ngIf="devId && id" class="container mt-5 animated fadeIn" align="center">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Asignar {{ tipo }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p> Verifique los datos antes de asignar {{ tipo }} </p>
+      <form ngNativeValidate #f="ngForm" (ngSubmit)="asignarProyecto( f )">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fas fa-font"></i>
+            </div>
+          </div>
+          <input [ngModel]="proyectoTareaSeleccionado.name" name="id" type="text" class="form-control" required placeholder="Nombre de proyecto o tarea">
+        </div>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fas fa-font"></i>
+            </div>
+          </div>
+          <input [ngModel]="devSeleccionado.name" name="devId" type="text" class="form-control" required placeholder="Nombre del desarrollador">
+        </div>
+        <div class=" container mt-3">
+          <div align="center">
+            <button (click)="close()" type="button" mat-fab class="btn btn-primary" color="warn">
+              <i class="far fa-times-circle"></i>
+            </button>
+            <button type="submit" mat-fab class="btn btn-primary ml-5" color="primary">
+              <i class="fas fa-save"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,51 @@
+<mat-toolbar class="animated fadeIn" color="primary">
+  <div class="container">
+    Creci Test <i class="fab fa-angular"></i>
+  </div>
+</mat-toolbar>
+<div class="container mt-5 animated fadeIn" align="center">
+  <mat-card class="example-card" style="width: 80%; height: 80%;">
+    <mat-card-header align="center">
+      <mat-card-title>Registro de usuario <i class="fas fa-sign-in-alt"></i></mat-card-title>
+      <mat-card-subtitle>Creci Test <i class="fab fa-angular"></i></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form ngNativeValidate #f="ngForm" (ngSubmit)="registro( f )">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fas fa-font"></i>
+            </div>
+          </div>
+          <input ngModel name="name" type="text" class="form-control" required placeholder="Introduce tu nombre">
+        </div>
+        <div class="input-group mb-2 mt-4">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fas fa-at"></i>
+            </div>
+          </div>
+          <input ngModel name="email" type="email" class="form-control" required placeholder="Introduce tu email">
+        </div>
+
+        <div class="input-group mb-2 mt-4">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fas fa-key"></i>
+            </div>
+          </div>
+          <input ngModel name="password" type="password" class="form-control" required placeholder="Introduce tu password">
+        </div>
+        <div class=" container mt-3">
+          <div align="left">
+            <h4>¿Ya estas registrado? <a routerLink="/login">Inicia sesion aqui!</a></h4>
+          </div>
+
+          <div align="right">
+            <button type="submit" mat-fab class="btn btn-primary"><i class="fas fa-sign-in-alt"></i></button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

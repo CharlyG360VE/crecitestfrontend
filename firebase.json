@@ -1,0 +1,23 @@
+{
+  "hosting": {
+    "public": "./dist/frontend",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [ {
+      "source": "**",
+      "headers": [ {
+        "key": "Access-Control-Allow-Origin",
+        "value": "https://testcreci.web.app/"
+      } ]
+    }],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

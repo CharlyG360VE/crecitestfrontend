@@ -1,0 +1,15 @@
+<mat-toolbar class="animated fadeIn" color="accent">
+  <i class="fas fa-ellipsis-h"></i>
+  <h4 class="ml-3"> <small>Creci Test App <i class="fab fa-angular"></i></small> </h4>
+</mat-toolbar>
+<mat-nav-list class="animated fadeIn" class="mt-1">
+  <a class="ml-2" mat-button routerLink="/reporte" routerLinkActive="active" (click)="onSidenavClose()"> 
+    <i class="fas fa-code"></i>  Reportes 
+  </a>
+  <a class="ml-2" mat-button routerLink="/crear" routerLinkActive="active" (click)="onSidenavClose()"> 
+    <i class="fas fa-plus"></i> Nuevo proyecto/tarea 
+  </a>
+  <a class="ml-2" mat-button routerLink="/asignar" routerLinkActive="active" (click)="onSidenavClose()"> 
+    <i class="far fa-edit"></i> Asignar proyecto/tarea 
+  </a>
+</mat-nav-list>

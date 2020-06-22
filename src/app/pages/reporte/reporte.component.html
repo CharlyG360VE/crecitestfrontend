@@ -1,0 +1,96 @@
+<div class="loading-indicator" *ngIf="bool">
+  <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+</div>
+<div class="row" *ngIf="!bool">
+  <div class="col-12">
+    <div class="container mt-5 animated fadeIn">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title> 
+            {{ name }} <i class="fas fa-code"></i>
+          </mat-card-title>
+          <mat-card-subtitle>Selecciona para vizualizar tus proyectos o tareas</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <mat-form-field>
+                  <mat-label>Seleccionar tipo</mat-label>
+                  <mat-select [(ngModel)]="tipo" name="tipo">
+                    <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                      {{ tipo.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <table class="table table-hover" align="left">
+                  <thead>
+                    <tr>
+                      <th>Nombre {{ tipo }}</th>
+                      <th> {{ tipo }} finalizados(a)</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="tipo == 'proyectos' && tipo">
+                    <tr *ngFor="let proyecto of proyectos">
+                      <td> {{ proyecto.name }} </td>
+                      <td align="center">
+                        <button type="button" mat-fab class="btn btn-primary container">
+                         <i class="fas fa-check"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="tipo !== 'proyectos' && tipo">
+                    <tr *ngFor="let tarea of tareas">
+                      <td> {{ tarea.name }} </td>
+                      <td align="center">
+                        <button type="button" mat-fab class="btn btn-primary container">
+                         <i class="fas fa-check"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div>
+                  <h4> <i class="fas fa-calendar-day"></i> Ultima fecha trabajada: {{ fechaReportes | date: 'medium' }} </h4>
+                  <h4> <i class="far fa-clock"></i> Horas trabajadas: {{ horas }} horas </h4>
+                </div>
+              </div>
+           </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="!bool">
+  <div class="col-12">
+    <div class="container mt-5 animated fadeIn" align="center">
+      <mat-card class="example-card mt-5">
+        <mat-card-header>
+          <mat-card-title>Reporte de horas trabajadas</mat-card-title>
+          <mat-card-subtitle class="mt-2"><i class="fas fa-calendar-day"></i> {{ fecha | date: 'medium' }} </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <form ngNativeValidate #f="ngForm" (ngSubmit)="actualizar( f )">
+            <div class="input-group mb-2 mt-4">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="far fa-clock"></i>
+                </div>
+              </div>
+              <input ngModel name="horas" min="1" type="number" class="form-control" required placeholder="Introduce tus horas trabajadas">
+            </div>
+            <div class=" container mt-3">
+              <div align="right">
+                <button type="submit" mat-fab class="btn btn-primary" color="primary">
+                  <i class="fas fa-save"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
